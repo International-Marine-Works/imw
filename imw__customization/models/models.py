@@ -16,13 +16,6 @@ class SaleOrderLine(models.Model):
     def _value_pc(self):
         self.product_uom_qty = float(self.imw_qty) * float(self.imw_measurement)
 
-    @api.multi
-    @api.onchange('product_id', 'location_id')
-    def product_filter(self):
-        res = {}
-        if self.product_id:
-            res['domain'] = {'location_id': [('product_id', '=', self.product_id.id)]}
-        return res
  
  
 class imw_product_template(models.Model):
