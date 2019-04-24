@@ -29,7 +29,6 @@
             <field name="imw_qty"/>
             <field name="otherUnitMeasure" />
             <field name="imw_measurement"/>
-            <field name="product_id" domain="[('product_id', '=', product_id_c)]"/>
         </xpath>
 
 
