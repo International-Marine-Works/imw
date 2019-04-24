@@ -35,59 +35,10 @@
      </field>
 </record>
 
-   <template id="report_saleorder_document_imw_measurement" inherit_id="sale.report_saleorder_document">
-        <xpath expr="//table[hasclass('table', 'table-sm')]/thead/tr/th[1]" position="after">
-            <th><strong>Measurement</strong></th>
-        </xpath>
-        <xpath expr="//table[hasclass('table', 'table-sm')]/tbody/t/tr[1]/t[1]/td[1]" position="after">
-             <td>
-                <span t-field="line.otherUnitMeasure"/>
-             </td>
-        </xpath>
-    </template>
 
 
 
 
-    <template id="report_saleorder_document_imw_qty" inherit_id="sale.report_saleorder_document">
-        <xpath expr="//table[hasclass('table', 'table-sm')]/thead/tr/th[1]" position="after">
-            <th><strong>Quantity</strong></th>
-        </xpath>
-        <xpath expr="//table[hasclass('table', 'table-sm')]/tbody/t/tr[1]/t[1]/td[1]" position="after">
-             <td>
-                <span t-field="line.imw_qty"/>
-             </td>
-        </xpath>
-    </template>
-
-
-
-
-
-
-<!--**********purchase********** -->
-
- <record model="ir.ui.view" id="purchase_order_view_inherit">
-    <field name="name">purchase.order.view.inherit1</field>
-    <field name="model">purchase.order</field>
-    <field name="inherit_id" ref="purchase.purchase_order_form"/>
-    <field name="arch" type="xml">
-        <xpath expr="/form/sheet/notebook/page/field[@name='order_line']/tree/field[@name='product_id']" position="before">
-             <field name="category_id" />
-          </xpath>
-
-     <field context="{'group_by':'categ_id'}" domain="[('to_sell','=',True))]" name="product_id" />
-
-
-        <xpath expr="/form/sheet/notebook/page/field[@name='order_line']/tree/field[@name='name']" position="after">
-            <field name="imw_qty"/>
-            <field name="imw_measurement"/>
-            <field name="otherUnitMeasure" />
-          </xpath>
-
-
-     </field>
-</record>
 
 
 
