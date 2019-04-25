@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+
 from odoo import models, fields, api
 from odoo import api, fields, models, _
 from odoo.addons import decimal_precision as dp
@@ -7,14 +8,12 @@ from odoo.tools import float_utils
 import logging
 _logger = logging.getLogger(__name__)
 
-class AccountBankStatement(models.Model):
-    _inherit = "account.bank.statement"
+class imw_product_template(models.Model):
+    _name = 'product.template'
+    _inherit = 'product.template'
+    otherUnitMeasure = fields.Many2one('uom.uom', 'Other Unit of Measure')
 
-    referenceRecive = fields.Char(string='R Reference', states={'open': [('readonly', False)]}, copy=False,
-                           readonly=True,
-                          help="Used to hold the reference of the external mean that created this statement (name of imported file, reference of online synchronization...)")
-
-class  SaleOrder(models.Model):
+class SaleOrder(models.Model):
     _inherit = 'sale.order'
 
 
@@ -26,8 +25,9 @@ class  SaleOrder(models.Model):
 
         return self.env.ref('sale.action_report_saleorder') \
             .with_context({'discard_logo_check': True}).report_action(self,data=1)
- 
- 
+
+
+
     def sale_order_totalhide(self):
 
         self.filtered(lambda s: s.state == 'draft').write({'state': 'sent'})
@@ -45,6 +45,7 @@ class SaleOrderLine(models.Model):
     category_id = fields.Many2one('product.category', 'category')
     otherUnitMeasure = fields.Many2one('uom.uom', 'Other Unit of Measure')
 
+  
     @api.multi
     def _prepare_invoice_line(self, qty):
         """
@@ -137,13 +138,17 @@ class SaleOrderLine(models.Model):
                                                                                       product.taxes_id, self.tax_id,
                                                                                       self.company_id)
  
-class imw_product_template(models.Model):
-    _name = 'product.template'
-    _inherit = 'product.template'
-    otherUnitMeasure = fields.Many2one('uom.uom', 'Other Unit of Measure')
 
- 
 
+
+class AccountBankStatement(models.Model):
+    _inherit = "account.bank.statement"
+
+    referenceRecive = fields.Char(string='R Reference', states={'open': [('readonly', False)]}, copy=False,
+                           readonly=True,
+                          help="Used to hold the reference of the external mean that created this statement (name of imported file, reference of online synchronization...)")
+
+    
 class AccountInvoiceLine(models.Model):
     _inherit = 'account.invoice.line'
 
@@ -158,25 +163,4 @@ class AccountInvoiceLine(models.Model):
          if float(self.imw_measurement) == 0:
             self.imw_measurement = 1
 
-         self.quantity = float(self.imw_qty) * float(self.imw_measurement)
-
-
-
-
-
-
-    @api.multi
-    @api.onchange('product_id')
-    def _onchangeProductId(self):
-        self.otherUnitMeasure = self.product_id.otherUnitMeasure
-
-        if float(self.imw_qty) == 0:
-            self.imw_qty = 1
-
-        if float(self.imw_measurement) == 0:
-            self.imw_measurement = 1
-            # self.product_uom_qty = float(self.imw_qty) * float(self.imw_measurement)
-        imwQty = float(self.imw_qty) if float(self.imw_qty) > 0 else 1
-        self.imw_measurement = float(self.quantity) / imwQty
-
-
+         self.quantity = float(self.imw_qty) * float(self.imw_measurement) 
