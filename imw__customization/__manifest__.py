@@ -21,8 +21,8 @@
     'category': 'Uncategorized',
     'version': '0.1',
 
-    # any module necessary for this one to work correctly  'depends': ['base','product'],
-    'depends': ['stock_account', 'barcodes' ],
+    # any module necessary for this one to work correctly  'depends': ['stock_account', 'barcodes' ],
+    'depends': ['stock_account', 'barcodes' ,'purchase','sale', 'report'],
 
     # always loaded
     'data': [
