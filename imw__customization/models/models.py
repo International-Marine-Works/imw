@@ -13,7 +13,7 @@ class imw_product_template(models.Model):
     _inherit = 'product.template'
     otherUnitMeasure = fields.Many2one('uom.uom', 'Other Unit of Measure')
 
-class  SaleOrder(models.Model):
+class SaleOrder(models.Model):
     _inherit = 'sale.order'
 
 
@@ -149,4 +149,18 @@ class AccountBankStatement(models.Model):
                           help="Used to hold the reference of the external mean that created this statement (name of imported file, reference of online synchronization...)")
 
     
- 
+class AccountInvoiceLine(models.Model):
+    _inherit = 'account.invoice.line'
+
+    imw_qty = fields.Float(string='Quantity')
+    imw_measurement = fields.Float(string='Measurement',default=1)
+    category_id = fields.Many2one('product.category', 'category')
+    otherUnitMeasure = fields.Many2one('uom.uom', 'Other Unit of Measure')
+
+    @api.multi
+    @api.onchange('imw_qty', 'imw_measurement')
+    def _ChangeQty(self):
+         if float(self.imw_measurement) == 0:
+            self.imw_measurement = 1
+
+         self.quantity = float(self.imw_qty) * float(self.imw_measurement) 
