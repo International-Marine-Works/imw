@@ -12,37 +12,5 @@ class imw_product_template(models.Model):
     _name = 'product.template'
     _inherit = 'product.template'
     otherUnitMeasure = fields.Many2one('uom.uom', 'Other Unit of Measure')
-
-class  SaleOrder(models.Model):
-    _inherit = 'sale.order'
-
-
-
-    @api.multi
-    def sale_order_alltotalhide(self):
-
-        self.filtered(lambda s: s.state == 'draft').write({'state': 'sent'})
-
-        return self.env.ref('sale.action_report_saleorder') \
-            .with_context({'discard_logo_check': True}).report_action(self,data=1)
-
-
-
-    def sale_order_totalhide(self):
-
-        self.filtered(lambda s: s.state == 'draft').write({'state': 'sent'})
-
-        return self.env.ref('sale.action_report_saleorder') \
-            .with_context({'discard_logo_check': True}).report_action(self,data=2)
-
-
-
-class SaleOrderLine(models.Model):
-    _inherit = 'sale.order.line'
-
-    imw_qty = fields.Float(string='Quantity')
-    imw_measurement = fields.Float(string='Measurement',default=1)
-    category_id = fields.Many2one('product.category', 'category')
-    otherUnitMeasure = fields.Many2one('uom.uom', 'Other Unit of Measure')
-
+ 
   
