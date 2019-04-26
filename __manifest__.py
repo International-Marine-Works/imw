@@ -21,18 +21,14 @@
     'category': 'Uncategorized',
     'version': '0.1',
 
-    # any module necessary for this one to work correctly     
+    # any module necessary for this one to work correctly
  'depends': ['base','stock_account', 'barcodes' ,'purchase', 'sale_management','account', 'analytic'],
-
+ 
     # always loaded
     'data': [
         # 'security/ir.model.access.csv',
         'views/views.xml',
         'views/templates.xml',
-        #'views/account.xml',
-        #'views/product.xml',
-        #'views/purchase.xml',
-        #'views/sale.xml',
     ],
     # only loaded in demonstration mode
     'demo': [
