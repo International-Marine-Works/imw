@@ -164,3 +164,17 @@ class AccountInvoiceLine(models.Model):
             self.imw_measurement = 1
 
          self.quantity = float(self.imw_qty) * float(self.imw_measurement) 
+        
+    @api.multi
+    @api.onchange('product_id')
+    def _onchangeProductId(self):
+        self.otherUnitMeasure = self.product_id.otherUnitMeasure
+
+        if float(self.imw_qty) == 0:
+            self.imw_qty = 1
+
+        if float(self.imw_measurement) == 0:
+            self.imw_measurement = 1
+            # self.product_uom_qty = float(self.imw_qty) * float(self.imw_measurement)
+        imwQty = float(self.imw_qty) if float(self.imw_qty) > 0 else 1
+        self.imw_measurement = float(self.quantity) / imwQty
