@@ -30,7 +30,7 @@
         'views/views.xml',
         'views/templates.xml',
         #'views/account.xml',
-        'views/product.xml',
+        #'views/product.xml',
         #'views/purchase.xml',
         #'views/sale.xml',
     ],
