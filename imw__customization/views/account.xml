@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+  
+
+
+    <!--**********Invoice********** -->
+
+    <record model="ir.ui.view" id="Invoice_order_view_inherit">
+      <field name="name">Invoice.order.view.inherit1</field>
+      <field name="model">account.invoice</field>
+      <field name="inherit_id" ref="account.invoice_form"/>
+      <field name="arch" type="xml">
+        <xpath expr="/form/sheet/notebook/page/field[@name='invoice_line_ids']/tree/field[@name='product_id']" position="before">
+          <field name="category_id" />
+        </xpath>
+        <field context="{'group_by':'categ_id'}" domain="[('to_sell','=',True))]" name="product_id" />
+
+        <xpath expr="/form/sheet/notebook/page/field[@name='invoice_line_ids']/tree/field[@name='name']" position="after">
+          <field name="imw_measurement"/>
+          <field name="otherUnitMeasure" />
+          <field name="imw_qty"/>
+        </xpath>
+
+
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_bank_statement_form_inherit">
+      <field name="name">view_bank_statement_form.inherit1</field>
+      <field name="model">account.bank.statement</field>
+      <field name="inherit_id" ref="account.view_bank_statement_form"/>
+      <field name="arch" type="xml">
+        <xpath expr="//field[@name='journal_id']" position="before">
+          <field name="referenceRecive" />
+        </xpath>
+      </field>
+
+    </record>
+
+
+  </data>
+</odoo>
