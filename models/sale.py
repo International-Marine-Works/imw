@@ -6,21 +6,21 @@ import logging
 _logger = logging.getLogger(__name__)
 
 
-class SaleOrder(models.Model):
-    _inherit = 'sale.order'
+# class SaleOrder(models.Model):
+#     _inherit = 'sale.order'
 
-    @api.multi
-    def sale_order_alltotalhide(self):
-        self.filtered(lambda s: s.state == 'draft').write({'state': 'sent'})
+#     @api.multi
+#     def sale_order_alltotalhide(self):
+#         self.filtered(lambda s: s.state == 'draft').write({'state': 'sent'})
 
-        return self.env.ref('sale.action_report_saleorder') \
-            .with_context({'discard_logo_check': True}).report_action(self, data=1)
+#         return self.env.ref('sale.action_report_saleorder') \
+#             .with_context({'discard_logo_check': True}).report_action(self, data=1)
 
-    def sale_order_totalhide(self):
-        self.filtered(lambda s: s.state == 'draft').write({'state': 'sent'})
+#     def sale_order_totalhide(self):
+#         self.filtered(lambda s: s.state == 'draft').write({'state': 'sent'})
 
-        return self.env.ref('sale.action_report_saleorder') \
-            .with_context({'discard_logo_check': True}).report_action(self, data=2)
+#         return self.env.ref('sale.action_report_saleorder') \
+#             .with_context({'discard_logo_check': True}).report_action(self, data=2)
 
 
 class saleorderline(models.Model):
