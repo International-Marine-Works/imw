@@ -30,7 +30,10 @@
         'views/account.xml',
         'views/product.xml',
         'views/purchase.xml',
- 
+        'views/sale.xml',
+        'views/sale_report.xml',
+        'views/report_saleorder_wo_subtotal.xml',
+        'views/report_saleorder_wo_totals.xml',
         'views/templates.xml',
         'views/views.xml',
     ],
