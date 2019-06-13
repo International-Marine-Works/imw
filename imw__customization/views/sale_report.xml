@@ -2,8 +2,8 @@
 <odoo>
     <data>
         <report 
-            id="action_report_saleorder_wo_totals"
-            string="Quotation / Order without Totals"
+            id="action_report_saleorder_wo_totals11"
+            string="Quotation / Order without Totals 11"
             model="sale.order" 
             report_type="qweb-pdf"
             file="imw__customization.report_saleorder_wo_totals" 
