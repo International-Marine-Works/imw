@@ -6,6 +6,13 @@ import logging
 _logger = logging.getLogger(__name__)
 
 
+class  SaleOrderOption(models.Model):
+    _inherit = 'sale.order.option'
+
+    imw_measurement = fields.Float(string='Measurement', default=1)
+    otherUnitMeasure = fields.Many2one('uom.uom', 'Other Unit of Measure')
+
+
 # class SaleOrder(models.Model):
 #     _inherit = 'sale.order'
 
@@ -120,4 +127,3 @@ class saleorderline(models.Model):
             self.price_unit = self.env['account.tax']._fix_tax_included_price_company(self._get_display_price(product),
                                                                                       product.taxes_id, self.tax_id,
                                                                                       self.company_id)
-
