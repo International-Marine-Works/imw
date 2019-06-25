@@ -89,10 +89,10 @@
                 <t t-set="colspan" t-value="colspan+1"/>
               </th>
               <th class="text-right">Taxes</th>
-              <!--<th class="text-right">
+              <th class="text-right">
                 <t groups="account.group_show_line_subtotals_tax_excluded">Amount</t>
-                <t groups="account.group_show_line_subtotals_tax_included">Total Price</t>
-              </th>-->
+                <!-- <t groups="account.group_show_line_subtotals_tax_included">Total Price</t> -->
+              </th>
             </tr>
           </thead>
           <tbody class="sale_tbody">
@@ -128,10 +128,10 @@
                   <td class="text-right">
                     <span t-esc="', '.join(map(lambda x: (x.description or x.name), line.tax_id))"/>
                   </td>
-                  <!--  <td class="text-right o_price_total">
+                   <td class="text-right o_price_total">
                       <span t-field="line.price_subtotal" groups="account.group_show_line_subtotals_tax_excluded"/>
-                      <span t-field="line.price_total" groups="account.group_show_line_subtotals_tax_included"/>
-                    </td> -->
+                      <!-- <span t-field="line.price_total" groups="account.group_show_line_subtotals_tax_included"/> -->
+                    </td>
                 </t>
                 <t t-if="line.display_type == 'line_section'">
                   <td t-att-colspan="colspan">
@@ -222,9 +222,9 @@
                   <tr>
                     <th class="text-left">Description</th>
                     <th t-if="has_option_discount" groups="sale.group_discount_per_so_line" class="text-left"/>
+                   <th class="text-left">Quantity</th>
                    <th class="text-left">Measurement</th>
-                   <th class="text-left">OtherUoM</th>
-                    <th class="text-left">Quantity</th>
+                    
                     <th class="text-right">Unit Price</th>
                   </tr>
                 </thead>
@@ -233,12 +233,19 @@
                     <td>
                       <span t-field="option.name"/>
                     </td>
-                    <td><span t-field="option.imw_measurement"/></td>
-                    <td><span t-field="option.otherUnitMeasure"/></td>
-                    <td>
+                    <td >
+                    <span t-field="option.imw_qty"/>
+                    <span t-field="option.uom_id"/>
+                    </td>
+                    <td >
+                    <span t-field="option.imw_measurement"/>
+                    <span t-field="option.otherUnitMeasure"/>
+                    </td>
+                    
+                    <!-- <td>
                       <span t-field="option.quantity"/> 
                       <span t-field="option.uom_id"/>
-                    </td>
+                    </td> -->
                     <td t-if="has_option_discount" groups="sale.group_discount_per_so_line">
                       <strong t-if="option.discount != 0.0" class="text-info">
                         <t t-esc="((option.discount % 1) and '%s' or '%d') % option.discount"/>% discount

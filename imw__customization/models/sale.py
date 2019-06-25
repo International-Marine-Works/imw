@@ -11,6 +11,50 @@ class  SaleOrderOption(models.Model):
 
     imw_measurement = fields.Float(string='Measurement', default=1)
     otherUnitMeasure = fields.Many2one('uom.uom', 'Other Unit of Measure')
+    imw_qty = fields.Float(string='Quantity')
+
+    @api.multi
+    @api.onchange('imw_qty', 'imw_measurement')
+    def _ChangeQty(self):
+        if float(self.imw_measurement) == 0:
+            self.imw_measurement = 1
+
+        self.quantity = float(self.imw_qty) * float(self.imw_measurement)
+
+    @api.multi
+    @api.onchange('quantity')
+    def _change_uom_qty(self):
+        if float(self.imw_measurement) == 0:
+            self.imw_measurement = 1
+        # self.product_uom_qty = float(self.imw_qty) * float(self.imw_measurement)
+        imwQty = float(self.imw_qty) if float(self.imw_qty) > 0 else 1
+        self.imw_measurement = float(self.quantity) / imwQty
+
+
+    @api.onchange('product_id', 'uom_id')
+    def _onchange_product_id(self):
+        ret = super(SaleOrderOption, self)._onchange_product_id()
+        self.otherUnitMeasure = self.product_id.otherUnitMeasure
+        if float(self.imw_measurement) == 0:
+            self.imw_measurement = 1
+        return ret
+        
+
+
+    # @api.multi
+    # @api.onchange('product_id')
+    # def _onchangeProductId(self):
+    #     self.product_uom_change()
+    #     self.otherUnitMeasure = self.product_id.otherUnitMeasure
+    #     if float(self.imw_measurement) == 0:
+    #         self.imw_measurement = 1
+
+    #     if float(self.imw_qty) == 0:
+    #         self.imw_qty = 1
+    #     if float(self.product_uom_qty) == 0:
+    #         self.product_uom_qty = 1
+
+
 
 
 # class SaleOrder(models.Model):
