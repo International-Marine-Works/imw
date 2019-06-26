@@ -55,9 +55,9 @@
         <field name="inherit_id" ref="account.view_move_tree"/>
         <field name="arch" type="xml">
            <tree>
-              <xpath expr="//field[@name='ref']" position="after">
+<!--              <xpath expr="//field[@name='ref']" position="after">-->
                   <field name="imw_ref2"/>
-              </xpath>
+<!--              </xpath>-->
             </tree>
         </field>
     </record>
