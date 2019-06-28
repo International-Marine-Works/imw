@@ -101,10 +101,8 @@
 
             <t t-foreach="doc.order_line" t-as="line">
 
-              <t t-set="current_subtotal" t-value="current_subtotal + line.price_subtotal"
-                 groups="account.group_show_line_subtotals_tax_excluded"/>
-              <t t-set="current_subtotal" t-value="current_subtotal + line.price_total"
-                 groups="account.group_show_line_subtotals_tax_included"/>
+              <t t-set="current_subtotal" t-value="current_subtotal + line.price_subtotal" groups="account.group_show_line_subtotals_tax_excluded"/>
+              <t t-set="current_subtotal" t-value="current_subtotal + line.price_total" groups="account.group_show_line_subtotals_tax_included"/>
 
               <tr t-att-class="'bg-200 font-weight-bold o_line_section' if line.display_type == 'line_section' else '' if line.display_type == 'line_note' else ''">
                 <t t-if="not line.display_type">
@@ -138,7 +136,7 @@
                     <span t-field="line.name"/>
                   </td>
                   <t t-set="current_section" t-value="line"/>
-                  <!--                    <t t-set="current_subtotal" t-value="0"/> -->
+                  <t t-set="current_subtotal" t-value="0"/> 
                 </t>
                 <t t-if="line.display_type == 'line_note'">
                   <td t-att-colspan="colspan">
@@ -149,24 +147,24 @@
 
               <t t-if="current_section and (line_last or doc.order_line[line_index+1].display_type == 'line_section')">
                 <tr class="is-subtotal text-right">
-                  <!-- <td t-att-colspan="colspan">
+                   <td t-att-colspan="colspan">
                      <strong class="mr16">Subtotal</strong>
                      <span t-esc="current_subtotal" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: doc.pricelist_id.currency_id}"/>
-                   </td> -->
+                   </td>
                 </tr>
               </t>
             </t>
           </tbody>
         </table>
 
-        <div class="clearfix">
-          <div id="total" class="row" name="total">
+         <div class="clearfix">
+          <!--<div id="total" class="row" name="total">
             <div t-attf-class="#{'col-4' if report_type != 'html' else 'col-sm-7 col-md-5'} ml-auto">
               <table class="table table-sm">
-                <tr class="border-black o_subtotal" style="">
+               <tr class="border-black o_subtotal" style="">
                   <td>
                     <strong>Subtotal</strong>
-                  </td>
+                  </td> 
                   <td class="text-right">
                     <span t-field="doc.amount_untaxed"/>
                   </td>
@@ -178,13 +176,11 @@
                         <span t-esc="amount_by_group[0]"/>
                         <span>
                           &amp;nbsp;<span>on</span>&amp;nbsp;
-                          <t t-esc="amount_by_group[2]"
-                             t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: doc.pricelist_id.currency_id}"/>
+                          <t t-esc="amount_by_group[2]" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: doc.pricelist_id.currency_id}"/>
                         </span>
                       </td>
                       <td class="text-right o_price_total">
-                        <span t-esc="amount_by_group[1]"
-                              t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: doc.pricelist_id.currency_id}"/>
+                        <span t-esc="amount_by_group[1]" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: doc.pricelist_id.currency_id}"/>
                       </td>
                     </t>
                     <t t-else="">
@@ -192,27 +188,24 @@
                         <span t-esc="amount_by_group[0]"/>
                       </td>
                       <td class="text-right o_price_total">
-                        <span t-esc="amount_by_group[1]"
-                              t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: doc.pricelist_id.currency_id}"/>
+                        <span t-esc="amount_by_group[1]" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: doc.pricelist_id.currency_id}"/>
                       </td>
                     </t>
                   </tr>
                 </t>
                 <div id="totalrowreport" name="totalrowreport">
                   <tr class="border-black o_total">
-
                     <td>
                       <strong>Total</strong>
                     </td>
-
                     <td class="text-right">
-                      <span t-field="doc.amount_total" />
+                      <span t-field="doc.amount_total"/>
                     </td>
                   </tr>
                 </div>
               </table>
             </div>
-            </div>
+            </div>-->
             <div t-if="doc.sale_order_option_ids and doc.state in ['draft', 'sent']">
               <t t-set="has_option_discount"
                  t-value="any(doc.sale_order_option_ids.filtered(lambda o: o.discount != 0.0))"/>
