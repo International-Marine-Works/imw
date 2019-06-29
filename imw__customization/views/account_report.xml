@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <report 
+            id="action_report_journal_entries"
+            string="Journal Entry"
+            model="account.move"
+            report_type="qweb-pdf"
+            file="imw__customization.report_journal_entries"
+            name="imw__customization.report_journal_entries"
+        />
+
+
+    </data>
+</odoo>
