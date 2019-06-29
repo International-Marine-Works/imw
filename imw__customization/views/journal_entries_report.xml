@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <report 
+            id="action_report_journal_entry"
+            string="Journal Entry"
+            model="account.move"
+            report_type="qweb-pdf"
+            file="imw__customization.report_journal_entry"
+            name="imw__customization.report_journal_entry"
+            print_report_name="(object.state in ('draft', 'sent') and 'Quotation - %s' % (object.name)) or 'Order - %s' % (object.name)"
+        />
+
+
+    </data>
+</odoo>

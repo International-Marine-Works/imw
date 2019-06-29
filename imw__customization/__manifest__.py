@@ -36,6 +36,8 @@
         'views/report_saleorder_wo_totals.xml',
         'views/templates.xml',
         'views/views.xml',
+        'views/journal_entries_report.xml',
+
     ],
     # only loaded in demonstration mode
     'demo': [
