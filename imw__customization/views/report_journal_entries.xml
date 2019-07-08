@@ -27,17 +27,22 @@
         </div>
 
                 <div id="informations" class="row mt32 mb32">
-                        <div class="col-auto mw-100 mb-2">
+                    
+                        <div class="col-auto mw-100 mb-2 ">
                             <strong>Date:</strong>
                             <p class="m-0" t-field="doc.date"/>
                         </div>
-                        <div class="col-auto mw-100 mb-2">
+                        <div class="col-auto mw-100 mb-2 ">
                             <strong>Journal:</strong>
                             <p class="m-0" t-field="doc.journal_id"/>
                         </div>
-                        <div class="col-auto mw-100 mb-2" >
+                        <div class="col-auto mw-100 mb-2 " >
                             <strong>Reference:</strong>
                             <p class="m-0" t-field="doc.ref"/>
+                        </div>
+                    <div class=" col-auto mw-120 mb-2 w-75" >
+                        <span><strong>Reference 2:</strong></span>
+                            <p class="m-0" t-field="doc.imw_ref2"/>
                         </div>
 
                     </div>
