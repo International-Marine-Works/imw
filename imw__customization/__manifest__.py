@@ -39,6 +39,7 @@
         'views/views.xml',
         'views/account_report.xml',
         'views/report_journal_entries.xml',
+        'views/report_bank_statement.xml',
 
     ],
     # only loaded in demonstration mode
