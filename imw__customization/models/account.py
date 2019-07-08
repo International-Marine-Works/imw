@@ -6,6 +6,18 @@ import logging
 
 _logger = logging.getLogger(__name__)
 
+from num2words import num2words
+
+
+class AccountInvoice(models.Model):
+    _inherit = "account.invoice"
+    _description = "Invoice"
+
+    @api.multi
+    def amount_to_word(self, amount):
+        return num2words(amount, lang='en').title()
+
+
 class AccountBankStatement(models.Model):
     _inherit = "account.bank.statement"
 

@@ -34,6 +34,7 @@
         'views/sale_report.xml',
         'views/report_saleorder_wo_subtotal.xml',
         'views/report_saleorder_wo_totals.xml',
+        'views/report_account_invoice.xml',
         'views/templates.xml',
         'views/views.xml',
         'views/account_report.xml',
