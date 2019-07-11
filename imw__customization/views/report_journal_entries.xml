@@ -27,7 +27,7 @@
         </div>
 
                 <div id="informations" class="row mt32 mb32">
-                    
+
                         <div class="col-auto mw-100 mb-2 ">
                             <strong>Date:</strong>
                             <p class="m-0" t-field="doc.date"/>
@@ -49,16 +49,19 @@
     </div>
 
 
-        <table class="table" >
+
+        <table class="table">
                         <thead>
                             <tr>
                                 <th class="text-left"><span>Account</span></th>
                                 <th class=" text-left"><span>Partner</span></th>
                                 <th class="text-left"><span>Label</span></th>
+                                <th class="text-left"><span>Analytic Account</span></th>
+                                <th class="text-left"><span>Analytic Tags</span></th>
+                                <th class="text-left"><span>Amount Currency</span></th>
                                 <th class="text-left"><span>Debit</span></th>
                                 <th class="text-left"><span>Credit</span></th>
                                 <th class="text-left"><span>Taxes Applied</span></th>
-
                             </tr>
                         </thead>
                         <tbody class="invoice_tbody">
@@ -68,16 +71,32 @@
                                 <td><span t-field="line.account_id"/></td>
                                 <td><span t-field="line.partner_id"/></td>
                                 <td><span t-field="line.name"/></td>
+                                <td><span t-field="line.analytic_account_id"/></td>
+                                 <td><span t-field="line.analytic_tag_ids"/></td>
+                                 <td><span t-field="line.amount_currency"/></td>
                                 <td><span t-field="line.debit"/></td>
                                 <td><span t-field="line.credit"/></td>
+                                <td><span t-field="line.tax_ids"/></td>
                               </tr>
-
                             </t>
+                            <tr>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+
+                              <td class="text-left">
+                                <strong><h4><span t-esc="'%.2f'% sum([o.credit for o in doc.line_ids])"/></h4></strong>
+                            </td>
+                            <td class="text-left">
+                                <strong><h4><span t-esc="'%.2f'% sum([o.debit for o in doc.line_ids])"/></h4></strong>
+                            </td>
+                            <td></td>
+                            </tr>
                         </tbody>
         </table>
-
-
-
 
     </t>
 
