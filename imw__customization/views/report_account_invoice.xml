@@ -26,34 +26,40 @@
                     
                 </t>
                     
-                        <div>
-                        <span class="pull-left" t-if="o.partner_id" name="partner">
-                            <strong>To:</strong>
-                            <span  t-field="o.partner_id.name"/>
-                        </span>
-                   
-                       
-                      <span name="reference" class="pull-right" t-if="o.reference">
-                            <strong>Payment #:</strong>
-                            <span t-field="o.reference"/>
-                        </span>
-                       <br/>
-                        <span class="pull-left" t-if="o.partner_id.child_ids[0]" name="contact">
-                            <strong>Contact:</strong>
-                            <span t-field="o.partner_id.child_ids[0].title"/> <span t-field="o.partner_id.child_ids[0].name"/>
-                        </span>
-                         
-                        <span class="pull-right" t-if="o.name" name="name">
-                            <strong>Job No.:</strong>
-                            <span t-field="o.name"/>
-                        </span>
-                        <br/>
-                       <span class="pull-left" t-if="o.date_invoice" name="invoice_date">
-                           <strong>Date:</strong>
-                            <span  t-field="o.date_invoice"/>
-                        </span>
+                      <div id="informations" class="row mt32 mb32">
+
+
+                        <div class=" col-auto mw-100" t-if="o.date_invoice" >
+                         <strong>Date:</strong>
+                            <p class="m-0"> <span t-field="o.date_invoice"/></p>
                         </div>
-                        
+
+                        <div class="col-auto mw-100 " t-if="o.partner_id">
+                           <strong>To:</strong>
+                            <p class="m-0" t-field="o.partner_id.name"/>
+                        </div>
+
+                        <div class="col-auto mw-100 " t-if="o.partner_id.child_ids" >
+                            <strong>Contact:</strong>
+                            <p class="m-0"><span t-field="o.partner_id.child_ids[0].title"/> <span t-field="o.partner_id.child_ids[0].name"/></p>
+                        </div>
+
+                        <div class="col-auto mw-100 " t-if="o.reference">
+                            <strong>Payment #:</strong>
+                            <p class="m-0" t-field="o.reference"/>
+                        </div>
+
+
+
+                       <div class=" col-auto mw-100" t-if="o.name" >
+                         <strong>Job No.:</strong>
+                            <p class="m-0"> <span t-field="o.name"/></p>
+                        </div>
+
+
+
+
+                    </div>
 
                    
 
@@ -109,15 +115,20 @@
                         </tbody>
                     </table>
 
-                    <div class="clearfix">
-                        <div id="total" class="row">
-                            <div t-attf-class="#{'col-4' if report_type != 'html' else 'col-sm-7 col-md-5'} ml-auto">
+                   <div class="clearfix">
+                        <div id="total">
+                            <!--<div t-attf-class="#{'col-4' if report_type != 'html' else 'col-sm-7 col-md-5'} ml-auto">-->
+                            <div class="ml-auto">
                                 <table class="table table-sm">
                                     <tr class="border-black o_total">
-                                        <td><strong>Total</strong></td>
+                                      <td class="text-right">
+                                        <span  t-esc="o.currency_id.amount_to_text(imw_total)"/>
+                                        </td>
+
+                                        <td class="text-right"><strong><span class="pull-right"/> Total</strong></td>
                                         <td class="text-right">
-                                            <span t-esc="imw_total"/><br/>
-                                            <span t-esc="o.currency_id.amount_to_text(imw_total)"/>
+                                          <span class="pull-right" t-esc="imw_total"/><br/>
+
                                         </td>
                                     </tr>
                                 </table>
@@ -159,9 +170,15 @@ ALEXANDRIA EGYPT<br/>
                         </h6>
                       </div>
                     </t>
-                <div>
-                <span class="pull-left">QP</span><span class="pull-right">Form 17-QP 07</span>
-                </div>
+                    <t t-foreach="docs" t-as="o">
+                    <div class="page">
+                     <div class="mt32 mb32">
+                      <span class="pull-left">QP</span>
+                      <p class="text-right">Form 17-QP 07</p>
+                     </div>
+                  </div>
+                </t>
+
                 </div>
             </t>
              </div>
