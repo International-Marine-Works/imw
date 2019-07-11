@@ -170,14 +170,28 @@ ALEXANDRIA EGYPT<br/>
                         </h6>
                       </div>
                     </t>
-                    <t t-foreach="docs" t-as="o">
-                    <div class="page">
-                     <div class="mt32 mb32">
-                      <span class="pull-left">QP</span>
-                      <p class="text-right">Form 17-QP 07</p>
-                     </div>
-                  </div>
-                </t>
+
+                    <xpath expr="//div[@class='footer']" position="replace">
+
+                        <div class="footer">
+                            <div class="mt32 mb32">
+                              <span class="pull-left">QP</span>
+                              <p class="text-right">Form 17-QP 07</p>
+                           </div>
+                        </div>
+                    </xpath>
+
+
+
+
+<!--                    <t t-foreach="docs" t-as="o">-->
+<!--                    <div class="page">-->
+<!--                     <div class="mt32 mb32">-->
+<!--                      <span class="pull-left">QP</span>-->
+<!--                      <p class="text-right">Form 17-QP 07</p>-->
+<!--                     </div>-->
+<!--                  </div>-->
+<!--                </t>-->
 
                 </div>
             </t>
