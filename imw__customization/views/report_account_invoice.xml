@@ -10,13 +10,13 @@
                 <t t-set="o" t-value="o.with_context({'lang': lang})"/>
                 
                 <div class="page"><center>
-                    <div class="text-center">
-                        <h2 style="display: inline;"><span t-if="o.type == 'out_invoice' and o.state in ('open', 'in_payment', 'paid')">Invoice No.</span></h2>
-                        <span t-if="o.type == 'out_invoice' and o.state == 'draft'">Draft Invoice</span>
-                        <span t-if="o.type == 'out_invoice' and o.state == 'cancel'">Cancelled Invoice</span>
-                        <span t-if="o.type == 'out_refund'">Credit Note</span>
-                        <span t-if="o.type == 'in_refund'">Vendor Credit Note</span>
-                        <span t-if="o.type == 'in_invoice'">Vendor Bill</span>
+                      <div class="text-center">
+                        <strong><span t-if="o.type == 'out_invoice' and o.state in ('open', 'in_payment', 'paid')">Invoice No.</span></strong>
+                        <strong><span t-if="o.type == 'out_invoice' and o.state == 'draft'">Draft Invoice</span></strong>
+                        <strong><span t-if="o.type == 'out_invoice' and o.state == 'cancel'">Cancelled Invoice</span></strong>
+                        <strong><span t-if="o.type == 'out_refund'">Credit Note</span></strong>
+                        <strong><span t-if="o.type == 'in_refund'">Vendor Credit Note</span></strong>
+                        <strong><span t-if="o.type == 'in_invoice'">Vendor Bill</span></strong>
                         <span t-field="o.origin"/>
                     </div>
                   </center>
