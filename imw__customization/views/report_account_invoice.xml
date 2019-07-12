@@ -10,15 +10,15 @@
                 <t t-set="o" t-value="o.with_context({'lang': lang})"/>
                 
                 <div class="page"><center>
-                    <h2 class="text-center">
-                        <span t-if="o.type == 'out_invoice' and o.state in ('open', 'in_payment', 'paid')">Invoice No.</span>
-                        <span t-if="o.type == 'out_invoice' and o.state == 'draft'">Draft Invoice</span>
-                        <span t-if="o.type == 'out_invoice' and o.state == 'cancel'">Cancelled Invoice</span>
-                        <span t-if="o.type == 'out_refund'">Credit Note</span>
-                        <span t-if="o.type == 'in_refund'">Vendor Credit Note</span>
-                        <span t-if="o.type == 'in_invoice'">Vendor Bill</span>
-                        <span t-field="o.number"/>
-                    </h2>
+                      <div class="text-center">
+                        <strong><span t-if="o.type == 'out_invoice' and o.state in ('open', 'in_payment', 'paid')">Invoice No.</span></strong>
+                        <strong><span t-if="o.type == 'out_invoice' and o.state == 'draft'">Draft Invoice</span></strong>
+                        <strong><span t-if="o.type == 'out_invoice' and o.state == 'cancel'">Cancelled Invoice</span></strong>
+                        <strong><span t-if="o.type == 'out_refund'">Credit Note</span></strong>
+                        <strong><span t-if="o.type == 'in_refund'">Vendor Credit Note</span></strong>
+                        <strong><span t-if="o.type == 'in_invoice'">Vendor Bill</span></strong>
+                        <span t-field="o.origin"/>
+                    </div>
                   </center>
                   <t t-set="address">
                     <address t-field="o.partner_id" 
@@ -45,14 +45,14 @@
                         </div>
 
                         <div class="col-auto mw-100 " t-if="o.reference">
-                            <strong>Payment #:</strong>
+<!--                            <strong>Payment #:</strong>-->
                             <p class="m-0" t-field="o.reference"/>
                         </div>
 
 
 
                        <div class=" col-auto mw-100" t-if="o.name" >
-                         <strong>Job No.:</strong>
+<!--                         <strong>Job No.:</strong>-->
                             <p class="m-0"> <span t-field="o.name"/></p>
                         </div>
 
