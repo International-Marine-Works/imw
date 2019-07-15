@@ -29,9 +29,7 @@
                        <div id="informations" class="col-xs-2 col-xs-offset-9">
 
                     <div class="pull-left">
-                         <div class="col-auto mw-100" t-if="o.date_invoice" >
-                           <p><strong>Date:</strong><span>   </span><span class="m-0" t-field="o.date_invoice"/></p>
-                          </div>
+
 
                           <div class="col-auto mw-100"  t-if="o.partner_id">
                             <p><strong>To:</strong><span>  </span><span class="m-0" t-field="o.partner_id.name"/></p>
@@ -39,6 +37,10 @@
 
                           <div class="col-auto mw-100" t-if="o.partner_id.child_ids" >
                              <p><strong>Contact:</strong><span>   </span><span class="m-0" t-field="o.partner_id.child_ids[0].title"/> <span t-field="o.partner_id.child_ids[0].name"/></p>
+                          </div>
+
+                        <div class="col-auto mw-100" t-if="o.date_invoice" >
+                           <p><strong>Date:</strong><span>   </span><span class="m-0" t-field="o.date_invoice"/></p>
                           </div>
 
                       </div>
