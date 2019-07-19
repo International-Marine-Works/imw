@@ -17,9 +17,14 @@
             file="imw__customization.report_bank_statement"
             name="imw__customization.report_bank_statement"
         />
-
-
-
+        <report
+            id="action_report_vendor_bill"
+            string="Vendor Bill"
+            model="account.invoice"
+            report_type="qweb-pdf"
+            file="imw__customization.report_vendor_bill"
+            name="imw__customization.report_vendor_bill"
+        />
 
 
     </data>
