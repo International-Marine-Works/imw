@@ -162,12 +162,30 @@
                                             </t>
                                         </tr>
                                     </t>
-                                    <tr class="border-black o_total">
+                                     <tr class="border-black o_total">
                                         <td><strong>Total</strong></td>
                                         <td class="text-right">
                                             <span t-field="o.amount_total"/>
                                         </td>
                                     </tr>
+                                    <t t-foreach="o.payment_ids" t-as="paid">
+                                      <tr class="border-black o_total">
+                                        <td><span><em>Paid On</em></span>  <span t-field="paid.payment_date"/></td>
+                                        <td class="text-right">
+                                           <span t-field="paid.amount"/>
+                                        </td>
+                                      </tr>
+                                    </t>
+
+                                    <tr class="border-black o_total">
+                                      <t t-if="o.residual">
+                                        <td><strong>Amount Due</strong></td>
+                                        <td class="text-right">
+                                           <span t-field="o.residual"/>
+                                      </td>
+                                     </t>
+                                    </tr>
+
                                 </table>
                             </div>
                         </div>
