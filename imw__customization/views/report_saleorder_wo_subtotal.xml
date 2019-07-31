@@ -32,7 +32,7 @@
           </t>
         </t>
       </t>
-      <div class="page">
+       <div class="page">
         <div class="oe_structure"/>
 
         <h2>
@@ -136,7 +136,7 @@
                     <span t-field="line.name"/>
                   </td>
                   <t t-set="current_section" t-value="line"/>
-                  <t t-set="current_subtotal" t-value="0"/> 
+                  <t t-set="current_subtotal" t-value="0"/>
                 </t>
                 <t t-if="line.display_type == 'line_note'">
                   <td t-att-colspan="colspan">
@@ -164,7 +164,7 @@
                <tr class="border-black o_subtotal" style="">
                   <td>
                     <strong>Subtotal</strong>
-                  </td> 
+                  </td>
                   <td class="text-right">
                     <span t-field="doc.amount_untaxed"/>
                   </td>
@@ -207,20 +207,21 @@
             </div>
             </div>-->
             <div t-if="doc.sale_order_option_ids and doc.state in ['draft', 'sent']">
-              <t t-set="has_option_discount"
-                 t-value="any(doc.sale_order_option_ids.filtered(lambda o: o.discount != 0.0))"/>
+              <t t-set="has_option_discount" t-value="any(doc.sale_order_option_ids.filtered(lambda o: o.discount != 0.0))"/>
               <h4>
-                <span>Optional</span>
+
+                      <span>Optional</span>
               </h4>
               <table class="table table-sm">
                 <thead>
                   <tr>
+                    <t t-set="colspan" t-value="5"/>
                     <th class="text-left">Description</th>
                     <th t-if="has_option_discount" groups="sale.group_discount_per_so_line" class="text-left"/>
-                   <th class="text-left">Quantity</th>
-                   <th class="text-left">Measurement</th>
-                    
+                    <th class="text-left">Quantity</th>
+                    <th class="text-left">Measurement</th>
                     <th class="text-right">Unit Price</th>
+                    <th class="text-right">Amount</th>
                   </tr>
                 </thead>
                 <tbody class="sale_tbody">
@@ -228,17 +229,30 @@
                     <td>
                       <span t-field="option.name"/>
                     </td>
-                    <td >
+                    <td>
                     <span t-field="option.imw_qty"/>
                     <span t-field="option.uom_id"/>
                     </td>
-                    <td >
+                    <td>
                     <span t-field="option.imw_measurement"/>
                     <span t-field="option.otherUnitMeasure"/>
                     </td>
-                    
+                    <td class="text-right">
+<!--                      <span t-field="option.price_unit"/>-->
+                       <div class="text-right">
+                        <div t-field="option.price_unit" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: doc.pricelist_id.currency_id}" t-att-style="option.discount and 'text-decoration: line-through' or None" t-att-class="option.discount and 'text-danger' or None"/>
+                        <div t-if="option.discount">
+                          <t t-esc="'%.2f' % ((1-option.discount / 100.0) * option.price_unit)"/>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="text-right">
+                       <t t-set="current_amount" t-value="option.imw_qty * option.imw_measurement * option.price_unit"/>
+                       <span t-esc="current_amount"/>
+                    </td>
+
                     <!-- <td>
-                      <span t-field="option.quantity"/> 
+                      <span t-field="option.quantity"/>
                       <span t-field="option.uom_id"/>
                     </td> -->
                     <td t-if="has_option_discount" groups="sale.group_discount_per_so_line">
@@ -247,15 +261,12 @@
                       </strong>
                     </td>
                     <td>
-                      <strong class="text-right">
-                        <div t-field="option.price_unit"
-                             t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: doc.pricelist_id.currency_id}"
-                             t-att-style="option.discount and 'text-decoration: line-through' or None"
-                             t-att-class="option.discount and 'text-danger' or None"/>
+                      <!-- <strong class="text-right">
+                        <div t-field="option.price_unit" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: doc.pricelist_id.currency_id}" t-att-style="option.discount and 'text-decoration: line-through' or None" t-att-class="option.discount and 'text-danger' or None"/>
                         <div t-if="option.discount">
                           <t t-esc="'%.2f' % ((1-option.discount / 100.0) * option.price_unit)"/>
                         </div>
-                      </strong>
+                      </strong>-->
                     </td>
                   </tr>
                 </tbody>
@@ -263,6 +274,8 @@
             </div>
 
         </div>
+
+
         <!---->
         <p t-field="doc.note"/>
         <p t-if="doc.payment_term_id.note">
@@ -290,6 +303,7 @@
         <div class="oe_structure"/>
       </div>
     </t>
+
 
   </template>
 

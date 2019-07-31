@@ -13,7 +13,7 @@
 
         <report
             id="action_report_saleorder_wo_subtotal"
-            string="Quotation / Order without Subtotals"
+            string="Quotation / Order with Subtotals"
             model="sale.order"
             report_type="qweb-pdf"
             file="imw__customization.report_saleorder_wo_subtotal"
