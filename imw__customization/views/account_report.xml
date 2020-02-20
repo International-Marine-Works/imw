@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <report 
+            id="action_report_journal_entries"
+            string="Journal Entry"
+            model="account.move"
+            report_type="qweb-pdf"
+            file="imw__customization.report_journal_entries"
+            name="imw__customization.report_journal_entries"
+        />
+         <report
+            id="action_report_bank_statement"
+            string="Bank Statement"
+            model="account.bank.statement"
+            report_type="qweb-pdf"
+            file="imw__customization.report_bank_statement"
+            name="imw__customization.report_bank_statement"
+        />
+        <report
+            id="action_report_vendor_bill"
+            string="Vendor Bill"
+            model="account.invoice"
+            report_type="qweb-pdf"
+            file="imw__customization.report_vendor_bill"
+            name="imw__customization.report_vendor_bill"
+        />
+
+
+    </data>
+</odoo>

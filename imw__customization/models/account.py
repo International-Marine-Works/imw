@@ -6,6 +6,18 @@ import logging
 
 _logger = logging.getLogger(__name__)
 
+from num2words import num2words
+
+
+class AccountInvoice(models.Model):
+    _inherit = "account.invoice"
+    _description = "Invoice"
+
+    @api.multi
+    def amount_to_word(self, amount):
+        return num2words(amount, lang='en').title()
+
+
 class AccountBankStatement(models.Model):
     _inherit = "account.bank.statement"
 
@@ -20,6 +32,13 @@ class AccountInvoiceLine(models.Model):
     imw_measurement = fields.Float(string='Measurement',default=1)
     category_id = fields.Many2one('product.category', 'category')
     otherUnitMeasure = fields.Many2one('uom.uom', 'Other Unit of Measure')
+
+# Adding Reference 2 field in Model account.move as an optional field dtd:2019-06-26
+class JournalEntriesRef2(models.Model):
+    _inherit='account.move'
+
+    imw_ref2=fields.Char('Reference2')
+
 
     @api.multi
     @api.onchange('imw_qty', 'imw_measurement')

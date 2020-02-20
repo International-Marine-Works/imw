@@ -35,8 +35,32 @@
           <field name="referenceRecive" />
         </xpath>
       </field>
-
     </record>
+
+    <record model="ir.ui.view" id="view_account_move_form_inherit">
+      <field name="name">view_account_move_form_inherit1</field>
+      <field name="model">account.move</field>
+      <field name="inherit_id"
+ ref="account.view_move_form"/>
+      <field name="arch" type="xml">
+        <xpath expr="//field[@name='ref']" position="after">
+          <field name="imw_ref2"/>
+        </xpath>
+      </field>
+    </record>
+
+    <record model="ir.ui.view"  id="view_account_move_tree_inherit">
+        <field name="name">view_account_move_tree_inherit1</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_tree"/>
+        <field name="arch" type="xml">
+           <xpath expr="//field[@name='ref']" position="after">
+                  <field name="imw_ref2" />
+              </xpath>
+        </field>
+    </record>
+
+
 
 
   </data>
