@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-
+#Test merge
 from odoo import api, fields, models, _
 from odoo.exceptions import UserError
 import logging
