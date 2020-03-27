@@ -98,6 +98,8 @@
                         </tbody>
         </table>
 
+        <p><h4>Last Update by:<span  t-field="doc.write_uid"></span></h4></p>
+
     </t>
 
 
