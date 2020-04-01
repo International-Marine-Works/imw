@@ -22,7 +22,7 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly     
- 'depends': ['base','stock_account', 'barcodes' ,'purchase', 'sale_management','account', 'analytic'],
+ 'depends': ['base','stock_account', 'barcodes' ,'purchase', 'sale_management','account', 'analytic','stock_account'],
 
     # always loaded
     'data': [
@@ -41,7 +41,8 @@
         'views/report_journal_entries.xml',
         'views/report_bank_statement.xml',
         'views/report_vendor_bill.xml',
-
+        "views/stock_move_views.xml",
+        "views/stock_scrap.xml",
     ],
     # only loaded in demonstration mode
     'demo': [
